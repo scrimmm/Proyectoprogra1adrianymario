@@ -1,83 +1,118 @@
 #include "Persona.h"
 
-Persona::Persona(string N, string A1, string A2, int E) 
+Persona::Persona() 
 {
-	Nombre = N;
-	Apellido1 = A1;
-	Apellido2 = A2;
-	Edad = E;
-}
-
-Persona::~Persona() 
-{
+	nombre=" ";
+	apellido1="";
+	apellido2="";
+	cedula="";
+	anonacimiento=0;
+	estatura=0;
+	peso=0;
 	
 }
 
-void Persona::setNombre(string N)
+Persona::Persona(string nom, string ape1, string ape2, string ced, int ano, float est, float pes)
 {
-	Nombre = N;
+	nombre=nom;
+	apellido1=ape1;
+	apellido2=ape2;
+	cedula=ced;
+	anonacimiento=ano;
+	estatura=est;
+	peso=pes;
 }
 
-void Persona::setApellido1(string A)
+void Persona::setNombre(string Nom)
 {
-	Apellido1 = A;
+	nombre=Nom;	
 }
 
-void Persona::setApellido2(string A)
+
+void Persona::setApellido1(string ape1)
 {
-	Apellido2 = A;
+	apellido1=ape1;
 }
 
-void Persona::setEdad(int E)
+void Persona::setApellido2(string ape2)
 {
-	Edad = E;
+	apellido2=ape2;
+}
+
+void Persona::setCedula(string ced)
+{
+	cedula=ced;
+}
+
+void Persona::setAnoNacimiento(int ano)
+{
+	anonacimiento=ano;
+}
+void Persona::setEstatura(float est)
+{
+	estatura=est;
+}
+
+void Persona::setPeso(float pes)
+{
+	peso=pes;
 }
 
 string Persona::getNombre()
 {
-	return Nombre;
+	return nombre;
 }
 
 string Persona::getApellido1()
 {
-	return Apellido1;
+	return apellido1;
 }
 
 string Persona::getApellido2()
 {
-	return Apellido2;
+	return apellido2;
 }
 
-int Persona::getEdad()
+string Persona::getCedula()
 {
-	return Edad;
+	return cedula;
 }
 
-string Persona::EsMay()
+int Persona::getAnoNacimiento()
 {
-	int x;
-	while (Edad < 0)
-	{
-		cout << "Error de edad, digite una nueva" << endl;
-		cin >> x;
-		setEdad(x);
-	}
-	
-	if ((Edad >= 0) && (Edad < 18))
-	{
-		return "Menor";
-	}
-		
-	else 
-		return "Mayor";
-	
+	return anonacimiento;
+}
+
+float Persona::getPeso()
+{
+	return peso;
+}
+
+float Persona::getEstatura()
+{
+	return estatura;
 }
 
 string Persona::toString()
 {
 	stringstream s;
-	
-	s << "El nombre del cliente es: " << Nombre << " " << Apellido1 << " " << Apellido2 << endl;
+	s<<"************************************************************************"<<endl;
+	s<< "Nombre: " << nombre<<" " << apellido1 <<" " <<apellido2<< " " <<endl;
+	s<< "Cedula: " << cedula<< endl;
+	s<< "Peso; " << peso << endl;
+	s<< "Estatura: " << estatura<< endl;
+	s<< "***********************************************************************"<<endl;
 	
 	return s.str();
+	
 }
+
+
+
+
+
+
+Persona::~Persona() {
+	
+}
+

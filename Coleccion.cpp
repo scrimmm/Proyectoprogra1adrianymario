@@ -1,34 +1,66 @@
 #include "Coleccion.h"
 
+
+
+
+
+
 Coleccion::Coleccion() 
 {
-	for(int i = 0; i < fil; i++)
-	{
-		for (int j = 0; j < col; j++)
-		{
-			Sala [i][j] = 0;
-		}
-	}
+	tamano=50;
+	cantidad=0;
+	
+	
 }
 
-Coleccion::~Coleccion() 
+Coleccion::Coleccion(int n)
 {
+	cantidad=0;
 	
+	tamano=n;
+	
+}
+
+void Coleccion::setCantidad(int n)
+{
+	cantidad=n;
+}
+int Coleccion::getCantidad()
+{
+	return cantidad;
+}
+int Coleccion::getTamano()
+{
+	return tamano;
+}
+
+
+void Coleccion::InserPer(Persona &per)
+{
+	if (cantidad<tamano)
+	{
+		vector[cantidad]=per;
+		setCantidad(cantidad+1);
+		
+	}
 }
 
 string Coleccion::toString()
 {
 	stringstream s;
 	
-	for (int i = 0; i < fil; i++)
+	for(int i=0; i<cantidad;i++)
 	{
-		for (int j = 0; j < col; j++)
-		{
-			s << Sala [i][j];
-		}
-		s << endl;
+		s<< vector[i].toString()<<endl;
 	}
 	return s.str();
 }
 
+
+
+Coleccion::~Coleccion() 
+{
+	
+	
+}
 
