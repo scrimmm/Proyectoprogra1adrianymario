@@ -1,7 +1,7 @@
 #include "Pelicula.h"
 
 Pelicula::Pelicula()
-					 
+				   
 {
 	NomPel= " ";
 	Gen=" ";
@@ -9,10 +9,11 @@ Pelicula::Pelicula()
 	Sala=" ";
 	TipPubli=" ";
 	Dimen=" ";
+	Psipnosis= " ";
 }
 
-Pelicula::Pelicula(string nombre, string genero, string tipo, string tipoSala, string tipoPublico, string dimension)
-					 
+Pelicula::Pelicula(string nombre, string genero, string tipo, string tipoSala, string tipoPublico, string dimension, string psip)
+				   
 {
 	NomPel= nombre;
 	Gen= genero;
@@ -20,6 +21,7 @@ Pelicula::Pelicula(string nombre, string genero, string tipo, string tipoSala, s
 	Sala= tipoSala;
 	TipPubli=tipoPublico;
 	Dimen=dimension;
+	Psipnosis= psip;
 }
 
 
@@ -41,7 +43,7 @@ void Pelicula::setTip(string tip)
 
 void Pelicula::setSala(string tipSal)
 {
-	Tip=tipSal;
+	Sala=tipSal;
 }
 
 void Pelicula::setTipPubli(string tipPub)
@@ -52,6 +54,12 @@ void Pelicula::setTipPubli(string tipPub)
 void Pelicula::setDimension(string dimen)
 {
 	Dimen=dimen;
+}
+
+void Pelicula::setPsipnosis(string psip)
+{
+	Psipnosis=psip;
+	
 }
 
 string Pelicula::getNomPel()
@@ -82,6 +90,13 @@ string Pelicula::getDimension()
 	return Dimen;
 }
 
+string Pelicula::getPsipnosis()
+
+{
+	return Psipnosis;
+}
+
+
 string Pelicula::toString()
 {
 	stringstream s;
@@ -92,6 +107,7 @@ string Pelicula::toString()
 	s<< "Tipo de sala: " <<Sala<<endl;
 	s<< "Tipo de publico: " << TipPubli<<endl;
 	s<< "Dimension: " << Dimen <<endl;
+	s<< "Psipnosis: " << Psipnosis<< endl;
 	
 	return s.str();
 }
@@ -100,4 +116,3 @@ string Pelicula::toString()
 Pelicula::~Pelicula() {
 	
 }
-
