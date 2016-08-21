@@ -1,32 +1,44 @@
 #ifndef PERSONA_H
 #define PERSONA_H
-#include <string>
-#include <iostream>
-#include <sstream>
+#include<iostream>
+#include<sstream>
+
 
 using namespace std;
 
 class Persona {
 private:
-	string Nombre;
-	string Apellido1;
-	string Apellido2;
-	int Edad;
+	string nombre;
+	string apellido1;
+	string apellido2;
+	string cedula;
+	int anonacimiento;
+	float estatura;
+	float peso;
+	
 protected:
 public:
-	Persona(string N, string A1, string A2, int E);
-	~Persona();
-	void setNombre(string N);
-	void setApellido1(string A);
-	void setApellido2(string A);
-	void setEdad(int E);
+	Persona();
+	Persona(string nom, string ape1, string ape2, string ced, int ano, float est, float pes);
+	void setNombre(string Nom);
+	void setApellido1(string ape1);
+	void setApellido2(string ape2);
+	void setCedula(string ced);
+	void setAnoNacimiento(int ano);
+	void setEstatura(float est);
+	void setPeso(float pes);
 	string getNombre();
 	string getApellido1();
 	string getApellido2();
-	int getEdad();
-	string EsMay();
+	string getCedula();
+	int getAnoNacimiento();
+	float getPeso();
+	float getEstatura();
 	string toString();
 	
+	
+	
+	~Persona();
 };
 
 #endif

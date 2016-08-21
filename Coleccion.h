@@ -1,19 +1,28 @@
 #ifndef COLECCION_H
 #define COLECCION_H
+
+
 #include "Persona.h"
 
-const int fil = 6;
-const int col = 10;
+
 
 class Coleccion {
 private:
-	int Sala [fil][col];
+	
+	int tamano;
+	int cantidad;
+	Persona vector[50];
+	
 protected:
 public:
 	Coleccion();
-	~Coleccion();
+	Coleccion(int);
+	void setCantidad(int n);
+	int getCantidad();
+	int getTamano();
+	void InserPer(Persona  &per);
 	string toString();
-	
+	~Coleccion();
 };
 
 #endif
