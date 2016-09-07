@@ -91,7 +91,7 @@ string Pelicula::getDimension()
 }
 
 string Pelicula::getPsipnosis()
-
+							  
 {
 	return Psipnosis;
 }
