@@ -1,6 +1,8 @@
 #include "SalaCine.h"
 
 
+
+
 SalaCine::SalaCine() 
 {
 	for (int i=0; i<6; i++)
@@ -70,8 +72,22 @@ bool SalaCine::seleccionAsiento(char f, int col )     //escoger los asientos
 	else return false;
 }
 
+void SalaCine::setasiento(int i, int j, int estado)
+   {
+	
+			sala[i-1][j-1]=estado;
+			
+	}
+	
+int SalaCine::getAsiento(int i,int j)
+{
+	return sala[i][j];
+}
 
- 
+
+
+
+
 bool SalaCine::confirmaseleccion(char c)   // me confirma los asiento comprados y los pasa a un estado 2 para poder mostrarlos seleccionados 
 								 
 {
@@ -113,26 +129,43 @@ bool SalaCine::confirmaseleccion(char c)   // me confirma los asiento comprados 
 }
 
 
+
+
+void SalaCine::aplicarComprados()//  deja los asientos en estado comprado 
+{	
 	
-	
-	void SalaCine::aplicarComprados()     //  deja los asientos en estado comprado 
+	for (int i=0;i<6;i++)
 	{
-		for (int i=0;i<6;i++)
+		for (int j=0;j<10;j++)
 		{
-			for (int j=0;j<10;j++)
+			if (sala[i][j]==2)
 			{
-				if (sala[i][j]==2)
-				{
-					sala[i][j]==3;
-				}
+				sala[i][j]==3;
 			}
-			
 		}
+		
+	}
 }
-	
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
