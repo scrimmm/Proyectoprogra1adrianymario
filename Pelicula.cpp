@@ -5,18 +5,18 @@ Pelicula::Pelicula()
 {
 	NomPel= " ";
 	Gen=" ";
-	Tip=" ";
-	Sala=" ";
-	TipPubli=" ";
+	Leng=" ";
+	Sala=0;
+	TipPubli=0;
 	Dimen=" ";
 }
 
-Pelicula::Pelicula(string nombre, string genero, string tipo, string tipoSala, string tipoPublico, string dimension)
+Pelicula::Pelicula(string nombre, string genero, string len, int tipoSala, int tipoPublico, string dimension)
 				   
 {
 	NomPel= nombre;
 	Gen= genero;
-	Tip= tipo;
+	Leng= len;
 	Sala= tipoSala;
 	TipPubli=tipoPublico;
 	Dimen=dimension;
@@ -34,17 +34,17 @@ void Pelicula::setGenero(string gen)
 	Gen=gen;
 }
 
-void Pelicula::setTip(string tip)
+void Pelicula::setLeng(string len)
 {
-	Tip=tip;
+	Leng=len;
 }
 
-void Pelicula::setSala(string tipSal)
+void Pelicula::setSala(int tipSal)
 {
-	Tip=tipSal;
+	Sala=tipSal;
 }
 
-void Pelicula::setTipPubli(string tipPub)
+void Pelicula::setTipPubli(int tipPub)
 {
 	TipPubli=tipPub;
 }
@@ -62,17 +62,17 @@ string  Pelicula::getGenero()
 {
 	return Gen;
 }
-string Pelicula::getTip()
+string Pelicula::getLeng()
 {
-	return Tip;
+	return Leng;
 }
 
-string Pelicula::getSala()
+int Pelicula::getSala()
 {
 	return Sala;
 }
 
-string Pelicula::getTipPubli()
+int Pelicula::getTipPubli()
 {
 	return TipPubli;
 }
@@ -88,7 +88,7 @@ string Pelicula::toString()
 	
 	s<< "Pelicula: " << NomPel<< endl;
 	s<< "Genero: " << Gen << endl;
-	s<< "Tipo: " << Tip << endl;	
+	s<< "Lenguaje: " << Leng << endl;	
 	s<< "Tipo de sala: " <<Sala<<endl;
 	s<< "Tipo de publico: " << TipPubli<<endl;
 	s<< "Dimension: " << Dimen <<endl;

@@ -10,26 +10,26 @@ class Pelicula {
 private:
 	string NomPel;
 	string Gen;
-	string Tip;
-	string Sala;
-	string TipPubli;
+	string Leng;
+	int Sala;
+	int TipPubli;
 	string Dimen;
 	
 protected:
 public:
 	Pelicula();
-	Pelicula(string nombre, string genero, string tipo, string tipoSala, string tipoPublico, string dimension);
+	Pelicula(string nombre, string genero, string len, int tipoSala, int tipoPublico, string dimension);
 	void setNomPel(string nom);
 	void setGenero(string gen);
-	void setTip(string tip);
-	void setSala(string tipSal);
-	void setTipPubli(string tipPub);
+	void setLeng(string leng);
+	void setSala(int tipSal);
+	void setTipPubli(int tipPub);
 	void setDimension(string dimen);
 	string getNomPel();
-	string  getGenero();
-	string getTip();
-	string getSala();
-	string getTipPubli();
+	string getGenero();
+	string getLeng();
+	int getSala();
+	int getTipPubli();
 	string getDimension();
 	string toString();
 	
