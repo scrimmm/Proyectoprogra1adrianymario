@@ -4,9 +4,9 @@
 
 class Nodo 
 {
-	private:
-		Pelicula* dato;
-		Nodo* Siguiente;
+private:
+	Pelicula* dato;
+	Nodo* Siguiente;
 	
 protected:
 public:
@@ -17,6 +17,7 @@ public:
 	Pelicula *getPel();
 	Nodo *getSiguiente();
 	void Inserta(Pelicula *);
+	string toString();
 	~Nodo();
 };
 

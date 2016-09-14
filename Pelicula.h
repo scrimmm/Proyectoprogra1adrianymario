@@ -15,12 +15,14 @@ private:
 	string TipPubli;
 	string Dimen;
 	string Psipnosis;
+	string Pais;
+	int Ano;
 	
 	
 protected:
 public:
 	Pelicula();
-	Pelicula(string , string , string , string , string, string,string );
+	Pelicula(string nombre, string genero, string tipo, string tipoSala, string tipoPublico, string dimension, string psip,string pais,int ano);
 	void setNomPel(string nom);
 	void setGenero(string gen);
 	void setTip(string tip);
@@ -28,6 +30,11 @@ public:
 	void setTipPubli(string tipPub);
 	void setDimension(string dimen);
 	void setPsipnosis(string);
+	void setAno(int a);
+	void setPais(int p);
+	int getAno();
+	string getPais();
+
 	string getNomPel();
 	string  getGenero();
 	string getTip();

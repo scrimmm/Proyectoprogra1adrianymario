@@ -1,17 +1,11 @@
 #include "Cartelera.h"
 
-Cartelera::Cartelera() {
+Cartelera::Cartelera() 
+{
 	
 }
 
-void Cartelera::InsIni (Pelicula *d)
-{
-	Primero = new Nodo (d, Primero);
-}
-
-
-Cartelera::~Cartelera() 
-{
+Cartelera::~Cartelera() {
 	
 }
 

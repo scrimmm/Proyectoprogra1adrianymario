@@ -1,107 +1,193 @@
 #include "Interfaz.h"
+#include "Pelicula.h"
+#include "ColeccionPeliculas.h"
 
 
-HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);// para activar los cambios de colores;
 
-Interfaz::Interfaz() 
+Interfaz::Interfaz()
+				   
 {
 	
 }
 
-void Interfaz::gotoxy(int x, int y)
+int Interfaz::getAdulto()
 {
-	static HANDLE h = NULL;  
-	if(!h)
-	   h = GetStdHandle(STD_OUTPUT_HANDLE);
-	   COORD c = { x, y };  
-	   SetConsoleCursorPosition(h,c);
+	return adulto;
+}
+int Interfaz::getNino()
+{
+	return nino;
+}
+int Interfaz::getTotalasiento()
+{
+	return totalasientos;
 }
 
 
-void Interfaz::asignaLetraColumna(int i)
+
+void Interfaz::seleccionaSala()
 {
-	switch (i)
+	
+}
+
+void Interfaz::SeleccionAsientos(SalaCine &sala)
+{
+	for (int i=0; i<totalasientos;i++)
 	{
-	case 0: impresionfila='A'; break;
-	case 1: impresionfila='B'; break;
-	case 2: impresionfila='C'; break;
-	case 3: impresionfila='D'; break;
-	case 4: impresionfila='E'; break;
-	case 5: impresionfila='F'; break;
-	
+		char letra;
+		int numero;
+		
+		sala.impremesalaCompleta(sala);
+		
+		cout<<"Los espacios disponibles estan en color verde "<< endl;
+		cout<< "Los espacios ocupados estan en color Rojo "<<endl;
+		cout<< "seleccionando el asiento " << i+1 << "de "<< totalasientos << endl;
+		cout<< "Digite la letra (A-F): "<<endl;
+		cin>>letra;
+		letra=toupper(letra);
+		cout<< "Digite el numero (1-10): "<<endl;
+		cin>>numero;
+		numero=numero-1;
+		  //si sala pos es cero ejecutar,  sino indica que esta reservado
+		
+		sala.seleccionAsiento(letra,numero);
+		
+		system("cls");
+		
+		
 	}	
+	
 }
 
-void Interfaz::imprimePasillo(int pos)
+void Interfaz::asientoNinoAdulto()
 {
-	for(int i=0;i<6;i++)
+	char opcion=' ';
+	bool salir=0;
+	
+	
+	while ( !salir )
+	{
+		cout<<" Digite el tipo de tiquetes a comprar: " <<endl<<endl;
+		cout<<" A (SOLO ADULTOS)"<<endl;
+		cout<<" N (SOLO NINOS)"<<endl;
+		cout<<" C (ADULTOS Y NINOS)"<<endl;
+		cout<<" S (SALIR)"<<endl;
+		cin>>opcion;
+		opcion=toupper(opcion);
 		
-	{
-		
-		gotoxy(pos,i);
-		SetConsoleTextAttribute(hConsole, 187);
-		cout<<" " <<endl;
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-}
-
-
-void Interfaz::comprovacionEstado(SalaCine sala,int i, int j)
-{
-	
-	if (sala.getAsiento(i,j)==0)
-	{
-		SetConsoleTextAttribute(hConsole, 160); //estado 0
-		cout<< columna << impresionfila<<" ";
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-	
-	if (sala.getAsiento(i,j)==1)
-	{
-		SetConsoleTextAttribute(hConsole, 240);// estado 1
-		cout<< columna << impresionfila<<" ";
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-	
-	
-	if (sala.getAsiento(i,j)==2)
-	{
-		SetConsoleTextAttribute(hConsole, 192);   // estado 2
-		cout<< columna << impresionfila<<" ";
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-	
-	if (sala.getAsiento(i,j)==3)
-	{
-		SetConsoleTextAttribute(hConsole, 192); //estado 3
-		cout<< columna << impresionfila<<" ";
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-}
-
-void Interfaz::imprimeUnLado(SalaCine sala,int pos,int posj)
-{
-	for (int i=0;i<6;i++)
-	{
-		gotoxy(pos,i);
-		for (int j=posj;j<posj+5;j++)
+		switch (opcion)
 		{
-			asignaLetraColumna(i);
-			columna=j+1;
-			comprovacionEstado(sala, i,j);
+				
+		case 'A':		
 			
-		}
-		cout<<endl;
+			cout<<"Digite la cantidad de tiquetes a comprar: ";
+			cin>>adulto;
+			cout << "Inserte un numero"<<endl;
+			totalasientos=adulto;
+			system("cls");
+			salir=1;break;
+			
+			
+			
+		case 'C': 	
+			cout<<"Digite la cantidad de tiquetes para adulto a comprar: ";
+			cin>>adulto;
+			
+			cout<<"Digite la cantidad de tiquetes para niño a comprar: ";
+			cin>>nino;
+			
+			totalasientos=adulto+nino;
+			system("cls"); 
+			salir=1;break;
+			
+		case 'N':
+			cout<<"Digite la cantidad de tiquetes a comprar: ";
+			cin>>nino;
+			totalasientos=nino;
+			system("cls");
+			salir=1;break;
+			
+		case 'S':
+			
+			salir=1;system("cls");break;
+			
+			default : 
+			system("cls");
+			cout<<"opcion invalida"<<endl;;
+			
+			
+		} 
+		
+		
+	
+		
+		
 		
 	}
 	
 }
 
 
+void Interfaz::confirmaAsientos(SalaCine &sala)
+{
+	char opcion = ' '; 
+	sala.impremesalaCompleta(sala);
+	cout<<"Esta seguro que desea los asientos seleccionados (S/N)"<<endl;
+	cin>>opcion;
+	system("cls");
+	opcion=toupper(opcion);
+	sala.confirmaseleccion(opcion);
+	sala.impremesalaCompleta(sala);	
+	sala.aplicarComprados();
+	sala.impremesalaCompleta(sala);
+
+}
+
+void Interfaz::seleccionPelicula(ColeccionPeliculas cole)
+{
+	int num;
+	cout<< "Cual pelicula desea reservar"<<endl;
+	cin>> num;
+	cout<< cole.obtienePelicula(num);
+	
+	//algo sinilar para cuando defina Carteleraen lugar de pelicula
+	//falta retornar la posicion num para pasarla y utilizarla como dimension K en sala i j k
+	
+}
 
 
 
+void Interfaz::compraTicket(SalaCine sala,ColeccionPeliculas cole1)
+							
+{
+	
+	
+	cout<< cole1.toString();
+	
+	
+	
+	seleccionPelicula(cole1);
+	sala.setAsiento(1,1,3);
+	asientoNinoAdulto();
+	SeleccionAsientos(sala);
+	confirmaAsientos(sala);
+	
+	
+	
+	
 
+}
+
+
+void Interfaz::Menuprincipal()
+{
+	cout<< "Cine los 3 patitos"<<endl;
+	cout<<"Digite:"<< endl;
+	cout<<"1 para compra de ticketes "<< endl;
+	cout<<"2 para consultar nuestra cartelera";
+	
+	
+}
 
 
 Interfaz::~Interfaz() {

@@ -1,26 +1,34 @@
 #ifndef INTERFAZ_H
 #define INTERFAZ_H
-#include <windows.h>
-#include "Pelicula.h"
 #include "SalaCine.h"
+#include "ColeccionPeliculas.h"
+
 
 class Interfaz {
 private:
+	char letra;
 	
-	int columna;         
-	char impresionfila;
+	
+	int numero;
+	int totalasientos=0;
+	int adulto=0;
+	int	nino=0;
+	
 	
 protected:
 public:
+	int getAdulto();
+	int getNino();
+	int getTotalasiento();
+	void Menuprincipal();
+	void seleccionaSala();
+	void SeleccionAsientos(SalaCine &sala);
+	void asientoNinoAdulto();
+	void confirmaAsientos(SalaCine &sala);
+	void compraTicket(SalaCine sala, ColeccionPeliculas cole);
+	void seleccionPelicula(ColeccionPeliculas );
+	
 	Interfaz();
-	void gotoxy(int x, int y);
-	void imprimePasillo(int pos);
-	void asignaLetraColumna(int i);
-	void comprovacionEstado(SalaCine sala,int i, int j);
-	void imprimeUnLado(SalaCine sala,int pos, int posj);
-	
-	
-	
 	~Interfaz();
 };
 

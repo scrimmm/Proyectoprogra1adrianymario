@@ -1,6 +1,6 @@
 #include "SalaCine.h"
 
-
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 
 SalaCine::SalaCine() 
@@ -14,6 +14,8 @@ SalaCine::SalaCine()
 	}
 	
 	peliexhibiendo=NULL; 
+	numerosala=0;
+	
 }
 
 SalaCine::SalaCine(Pelicula *ptrPelicula)
@@ -27,58 +29,50 @@ SalaCine::SalaCine(Pelicula *ptrPelicula)
 	}
 	
 	peliexhibiendo=ptrPelicula;
-	
 }
 
-bool SalaCine::seleccionAsiento(char f, int col )     //escoger los asientos
+
+
+void SalaCine::seleccionAsiento(char f, int col)     //escoger los asientos
 {
-	tolower(f);                                      // siempre minusculas
+	                                      
 	
-	int fila, columna;
+	int fila;
 	
-	if (sala [f][col]==0)
-	{
+	
+	
 		switch (f)
 		{
-		case 'a': fila=0; break;
-		case 'b': fila=1; break;
-		case 'c': fila=2; break;
-		case 'd': fila=3; break;
-		case 'e': fila=4; break;
-		case 'f': fila=5; break;
+		case 'A': fila=0; break;
 		
-		default: return false;
+		case 'B': fila=1; break;
+		
+		case 'C': fila=2; break;
+		
+		case 'D': fila=3; break;
+		
+		case 'E': fila=4; break;
+		
+		case 'F': fila=5; break;
+		
+		
 		}
 		
-		switch (col)
-		{
-		case 1: columna=0; break;
-		case 2: columna=1; break;
-		case 3: columna=2; break;
-		case 4: columna=3; break;
-		case 5: columna=4; break;
-		case 6: columna=5; break;
-		case 7: columna=6; break;
-		case 8: columna=7; break;
-		case 9: columna=8; break;
-		case 10:columna=9; break;
-		
-		default: return false;
-		}
-		sala [fila][columna]=1;
-		return true;
-	}
 	
-	else return false;
+		
+	sala[fila][col]=1;
+	
+	
+	
 }
 
-void SalaCine::setasiento(int i, int j, int estado)
-   {
+void SalaCine::setAsiento(int i, int j, int estado)
+{
 	
-			sala[i-1][j-1]=estado;
-			
-	}
+	sala[i-1][j-1]=estado;
 	
+}
+
 int SalaCine::getAsiento(int i,int j)
 {
 	return sala[i][j];
@@ -91,9 +85,9 @@ int SalaCine::getAsiento(int i,int j)
 bool SalaCine::confirmaseleccion(char c)   // me confirma los asiento comprados y los pasa a un estado 2 para poder mostrarlos seleccionados 
 								 
 {
-	tolower(c);
 	
-	if (c=='s')
+	
+	if (c =='S')
 	{
 		for (int i=0;i<6;i++)
 		{
@@ -101,12 +95,13 @@ bool SalaCine::confirmaseleccion(char c)   // me confirma los asiento comprados 
 			{
 				if (sala[i][j]==1)
 				{
-					sala[i][j]==2;
+					sala[i][j]=2;
+					
 				}
 			}
 			
 		}
-		
+	
 	}
 	
 	else	
@@ -117,7 +112,7 @@ bool SalaCine::confirmaseleccion(char c)   // me confirma los asiento comprados 
 			{
 				if (sala[i][j]==1)
 				{
-					sala[i][j]==0;
+					sala[i][j]=0;
 				}
 			}
 			
@@ -127,7 +122,6 @@ bool SalaCine::confirmaseleccion(char c)   // me confirma los asiento comprados 
 		
 	}
 }
-
 
 
 
@@ -140,25 +134,121 @@ void SalaCine::aplicarComprados()//  deja los asientos en estado comprado
 		{
 			if (sala[i][j]==2)
 			{
-				sala[i][j]==3;
+				sala[i][j]=3;
+				
 			}
 		}
 		
 	}
+
 }
 
 
 
 
+void SalaCine::gotoxy(int x, int y)    // inicia metodos de impresion de la sala
+{
+	static HANDLE h = NULL;  
+	if(!h)
+	   h = GetStdHandle(STD_OUTPUT_HANDLE);
+	   COORD c = { x, y };  
+	   SetConsoleCursorPosition(h,c);
+}
 
 
+void SalaCine::asignaLetraColumna(int i)
+{
+	switch (i)
+	{
+	case 0: impresionfila='A'; break;
+	case 1: impresionfila='B'; break;
+	case 2: impresionfila='C'; break;
+	case 3: impresionfila='D'; break;
+	case 4: impresionfila='E'; break;
+	case 5: impresionfila='F'; break;
+	
+	}	
+}
+
+void SalaCine::imprimePasillo(int pos)
+{
+	for(int i=0;i<6;i++)
+		
+	{
+		
+		gotoxy(pos,i);
+		SetConsoleTextAttribute(hConsole, 187);
+		cout<<" " <<endl;
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+}
 
 
+void SalaCine::comprovacionEstado(SalaCine sala,int i, int j)
+{
+	
+	if (sala.getAsiento(i,j)==0)
+	{
+		SetConsoleTextAttribute(hConsole, 160); 
+		cout<< columna << impresionfila<<" ";
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+	
+	if (sala.getAsiento(i,j)==1)
+	{
+		SetConsoleTextAttribute(hConsole, 240);
+		cout<< columna << impresionfila<<" ";
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+	
+	
+	if (sala.getAsiento(i,j)==2)
+	{
+		SetConsoleTextAttribute(hConsole, 120);  
+		cout<< columna << impresionfila<<" ";
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+	
+	if (sala.getAsiento(i,j)==3)
+	{
+		SetConsoleTextAttribute(hConsole, 192);
+		cout<< columna << impresionfila<<" ";
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+}
+
+void SalaCine::imprimeUnLado(SalaCine sala,int pos,int posj)
+{
+	for (int i=0;i<6;i++)
+	{
+		gotoxy(pos,i);
+		for (int j=posj;j<posj+5;j++)
+		{
+			asignaLetraColumna(i);
+			columna=j+1;
+			comprovacionEstado(sala, i,j);
+			
+		}
+		cout<<endl;
+		
+	}
+	
+}
 
 
+void SalaCine::impremesalaCompleta(SalaCine sala)
+{
+	
+	sala.imprimePasillo(0);
+	sala.imprimeUnLado(sala,1,0);
+	sala.imprimePasillo(16);
+	sala.imprimePasillo(17);
+	sala.imprimeUnLado(sala,18,5);
+	sala.imprimePasillo(34);
+}
 
 
-
+// fin metodos de impresion de la sala
 
 
 
@@ -173,4 +263,3 @@ SalaCine::~SalaCine()
 {
 	
 }
-

@@ -10,9 +10,11 @@ Pelicula::Pelicula()
 	TipPubli=" ";
 	Dimen=" ";
 	Psipnosis= " ";
+	Pais= " ";
+	Ano=0;
 }
 
-Pelicula::Pelicula(string nombre, string genero, string tipo, string tipoSala, string tipoPublico, string dimension, string psip)
+Pelicula::Pelicula(string nombre, string genero, string tipo, string tipoSala, string tipoPublico, string dimension, string psip,string pais,int ano)
 				   
 {
 	NomPel= nombre;
@@ -22,6 +24,8 @@ Pelicula::Pelicula(string nombre, string genero, string tipo, string tipoSala, s
 	TipPubli=tipoPublico;
 	Dimen=dimension;
 	Psipnosis= psip;
+	Pais=pais;
+	Ano=ano;
 }
 
 
@@ -61,6 +65,24 @@ void Pelicula::setPsipnosis(string psip)
 	Psipnosis=psip;
 	
 }
+void Pelicula::setAno(int a)
+{
+	Ano=a;
+}
+void Pelicula::setPais(int p)
+{
+	Pais=p;
+}
+
+int Pelicula::getAno()
+{
+	return Ano;
+}
+string Pelicula::getPais()
+{
+	return Pais;
+}
+					   
 
 string Pelicula::getNomPel()
 {

@@ -32,10 +32,16 @@ Nodo *Nodo::getSiguiente()
 	return Siguiente;
 }
 
+string Nodo::toString ()
+{
+	stringstream s;
+	
+	s << getPel()->toString() << endl;
+	
+	return s.str();
+}
 
 Nodo::~Nodo() 
 {
 	
 }
-
-

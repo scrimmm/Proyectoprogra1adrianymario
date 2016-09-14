@@ -1,17 +1,21 @@
 #ifndef CARTELERA_H
 #define CARTELERA_H
-#include "Nodo.h"
+#include"Pelicula.h"
+#include "SalaCine.h"
+#include"Horario.h"
 
-class Cartelera 
-{
-	private:
-		Nodo *Primero;
-		Nodo *Actual;
-	protected:
-	public:
-		Cartelera();
-		void InsIni(Pelicula *);
-		~Cartelera();
+class Cartelera {
+	
+	Pelicula *peli;
+	SalaCine *sala;
+	Horario *horario;
+	int numsala;
+	
+private:
+protected:
+public:
+	Cartelera();
+	~Cartelera();
 };
 
 #endif
